@@ -9,6 +9,8 @@
       --primary: #1e3a8a;
       --primary-light: #eff6ff;
       --accent: #d97706;
+      --danger: #ef4444;
+      --success: #10b981;
       --text: #1f2937;
       --text-muted: #6b7280;
       --bg: #f3f4f6;
@@ -21,9 +23,9 @@
       --tag-tour: #ec4899;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-    body { background-color: var(--bg); color: var(--text); line-height: 1.5; padding-bottom: 60px; }
+    body { background-color: var(--bg); color: var(--text); line-height: 1.5; padding-bottom: 90px; }
     header { background: linear-gradient(135deg, #1e3a8a, #3b82f6); color: white; padding: 24px 16px; text-align: center; }
-    header h1 { font-size: 1.4rem; margin-bottom: 6px; }
+    header h1 { font-size: 1.35rem; margin-bottom: 6px; }
     header p { font-size: 0.85rem; opacity: 0.9; }
 
     /* Summary Bar */
@@ -73,6 +75,16 @@
       color: white;
       border-color: var(--primary);
     }
+    .tab-btn.budget-tab {
+      background: #fef3c7;
+      color: #b45309;
+      border-color: #fde68a;
+    }
+    .tab-btn.budget-tab.active {
+      background: #b45309;
+      color: white;
+      border-color: #b45309;
+    }
 
     /* Content Area */
     .container { max-width: 680px; margin: 0 auto; padding: 12px 16px; }
@@ -108,15 +120,12 @@
       width: 2px;
       background: #cbd5e1;
     }
-    .timeline-item {
-      position: relative;
-      margin-bottom: 16px;
-    }
+    .timeline-item { position: relative; margin-bottom: 16px; }
     .timeline-item:last-child { margin-bottom: 0; }
     .timeline-dot {
       position: absolute;
       left: -18px;
-      top: 4px;
+      top: 6px;
       width: 10px;
       height: 10px;
       border-radius: 50%;
@@ -130,12 +139,13 @@
       padding: 12px 14px;
       border: 1px solid var(--border);
       box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+      position: relative;
     }
     .timeline-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
     .time-badge {
       font-size: 0.78rem;
@@ -200,45 +210,143 @@
     }
     .check-item.done span { text-decoration: line-through; color: #9ca3af; }
 
-    /* Edit Notice */
-    .edit-guide {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      background: #e0e7ff;
-      padding: 10px 14px;
-      border-radius: 8px;
-      margin-bottom: 14px;
+    /* Budget Table & Forms */
+    .budget-summary-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 16px;
     }
+    .budget-card-mini {
+      background: #f8fafc;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+    .budget-card-mini span { font-size: 0.75rem; color: var(--text-muted); display: block; }
+    .budget-card-mini strong { font-size: 1rem; color: var(--primary); margin-top: 2px; display: block; }
+
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      margin-bottom: 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    table.budget-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.78rem;
+      min-width: 480px;
+    }
+    table.budget-table th {
+      background: #f1f5f9;
+      color: var(--text);
+      padding: 8px;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+    table.budget-table td {
+      padding: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+    table.budget-table tr:last-child td { border-bottom: none; }
+
+    .budget-form {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 14px;
+    }
+    .budget-form h4 { font-size: 0.85rem; margin-bottom: 8px; color: var(--text); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+    .form-input {
+      width: 100%;
+      padding: 6px 8px;
+      font-size: 0.8rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+    }
+
+    /* Admin Edit Mode Visuals */
+    body.edit-mode [contenteditable="true"] {
+      outline: 1.5px dashed #3b82f6 !important;
+      background: #f0f7ff !important;
+      border-radius: 4px;
+      padding: 2px 4px;
+    }
+    .admin-controls { display: none; margin-top: 8px; gap: 6px; }
+    body.edit-mode .admin-controls { display: flex; }
+    .btn-small {
+      padding: 4px 8px;
+      font-size: 0.72rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .btn-danger { background: #fee2e2; color: var(--danger); border-color: #fca5a5; }
+    .btn-add { background: #dcfce7; color: #15803d; border-color: #86efac; width: 100%; margin-top: 10px; padding: 8px; }
+
+    /* Floating Admin Bar */
+    .admin-floating-bar {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      display: flex;
+      gap: 8px;
+      z-index: 999;
+    }
+    .float-btn {
+      padding: 10px 16px;
+      border-radius: 24px;
+      border: none;
+      color: white;
+      font-size: 0.85rem;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .float-btn.lock { background: #1e293b; }
+    .float-btn.editing { background: #ea580c; }
+    .float-btn.save { background: #16a34a; }
+    .float-btn.reset { background: #64748b; }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>❄️ 홋카이도 가족여행 4박 5일</h1>
-    <p>2026.10.12 (월) ~ 10.16 (금) | 삿포로 & 근교 드라이브</p>
+    <h1 id="header-title" contenteditable="false">❄️ 홋카이도 가족여행 4박 5일</h1>
+    <p id="header-subtitle" contenteditable="false">2026.10.12 (월) ~ 10.16 (금) | 삿포로 & 근교 드라이브</p>
   </header>
 
   <!-- 핵심 요약 정보 -->
   <div class="summary-card">
     <div class="summary-item">
       <span>동행 멤버 (총 6인)</span>
-      <span>장인어른, 장모님, 나, 아내, 처제 2명</span>
+      <span id="sum-members" contenteditable="false">장인어른, 장모님, 나, 아내, 처제 2명</span>
     </div>
     <div class="summary-item">
       <span>이동 수단</span>
-      <span>렌터카 (7~8인승 미니밴 대여)</span>
+      <span id="sum-rent" contenteditable="false">렌터카 (7~8인승 미니밴 대여)</span>
     </div>
     <div class="summary-item">
       <span>항공편 (대한항공)</span>
-      <span>출국 KE771 / 귀국 KE772 (예정)</span>
+      <span id="sum-flight" contenteditable="false">출국 KE771 / 귀국 KE772</span>
     </div>
     <div class="summary-item">
       <span>숙소 정보</span>
-      <span id="summary-hotel">삿포로 / 비에이·오타루</span>
+      <span id="sum-hotel" contenteditable="false">삿포로 시내 중심가</span>
     </div>
   </div>
 
-  <!-- 일자별 탭 네비게이션 -->
+  <!-- 일자별 및 부가메뉴 탭 -->
   <nav class="nav-tabs" id="navTabs">
     <button class="tab-btn active" onclick="switchTab(0)">Day 1 (10/12)</button>
     <button class="tab-btn" onclick="switchTab(1)">Day 2 (10/13)</button>
@@ -247,76 +355,50 @@
     <button class="tab-btn" onclick="switchTab(4)">Day 5 (10/16)</button>
     <button class="tab-btn" onclick="switchTab(5)">🏨 숙소/차량</button>
     <button class="tab-btn" onclick="switchTab(6)">🧳 준비물</button>
+    <button class="tab-btn budget-tab" onclick="switchBudgetTab()">🔒 💰 여행 경비</button>
   </nav>
 
   <main class="container">
-    <div class="edit-guide">
-      💡 <strong>안내:</strong> 일정 수정은 HTML 파일 내 <code>TRIP_DATA</code> 자바스크립트 객체에서 바로 변경하실 수 있습니다. 장소별 [지도] 버튼을 누르면 구글 지도 길찾기가 바로 열립니다.
-    </div>
-
-    <!-- 동적 생성 탭 컨테이너 -->
     <div id="tabContainers"></div>
   </main>
 
+  <!-- 화면 우측 하단 관리자 버튼 바 -->
+  <div class="admin-floating-bar" id="adminBar">
+    <button class="float-btn lock" id="modeBtn" onclick="toggleEditMode()">🔒 일정 편집 모드</button>
+    <button class="float-btn save" id="saveBtn" style="display:none;" onclick="saveAllChanges()">💾 저장</button>
+    <button class="float-btn reset" id="resetBtn" style="display:none;" onclick="resetToDefault()">🔄 초기화</button>
+  </div>
+
   <script>
     // =========================================================================
-    // [수정 가이드] 아래 TRIP_DATA 객체의 데이터만 수정하시면 화면 전체에 즉시 반영됩니다!
+    // 보안 비밀번호 설정 (산현님 요청값: 7149)
     // =========================================================================
-    const TRIP_DATA = {
+    const ADMIN_PASSWORD = "7149";
+    let isEditMode = false;
+    let isBudgetUnlocked = false; // 경비 탭 잠금 해제 상태
+
+    // 기본 일정 & 초기 경비 데이터
+    const DEFAULT_DATA = {
+      header: {
+        title: "❄️ 홋카이도 가족여행 4박 5일",
+        subtitle: "2026.10.12 (월) ~ 10.16 (금) | 삿포로 & 근교 드라이브",
+        members: "장인어른, 장모님, 나, 아내, 처제 2명",
+        rent: "렌터카 (7~8인승 미니밴 대여)",
+        flight: "출국 KE771 / 귀국 KE772",
+        hotel: "삿포로 시내 중심가"
+      },
       days: [
         {
           dayNum: 1,
           date: "10/12 (월)",
           title: "삿포로 입국 & 렌터카 픽업 및 시내 도착",
           items: [
-            {
-              time: "06:00",
-              category: "공항",
-              badgeClass: "badge-flight",
-              title: "인천공항 제2터미널 집결 및 수속",
-              desc: "대한항공(KE) 체크인 및 위탁수하물 부치기, 출국 심사",
-              query: "인천국제공항 제2여객터미널"
-            },
-            {
-              time: "08:30 - 11:15",
-              category: "항공",
-              badgeClass: "badge-flight",
-              title: "인천(ICN) ➔ 신치토세(CTS) 비행",
-              desc: "대한항공 탑승 (약 2시간 45분 소요, 기내식 제공)",
-              query: "신치토세 공항"
-            },
-            {
-              time: "11:30 - 13:00",
-              category: "렌트",
-              badgeClass: "badge-rent",
-              title: "신치토세 공항 입국 심사 및 렌터카 픽업",
-              desc: "수속 완료 후 렌터카 영업소 셔틀 이동, 7~8인승 미니밴 인수 및 차량 점검(ETC 카드 장착)",
-              query: "New Chitose Airport Car Rental"
-            },
-            {
-              time: "13:30 - 14:30",
-              category: "식사",
-              badgeClass: "badge-food",
-              title: "공항 근교 또는 치토세 시내 점심 식사",
-              desc: "치토세 라멘 또는 스프카레 식당 방문",
-              query: "신치토세공항 국내선 라멘도장"
-            },
-            {
-              time: "15:30 - 16:30",
-              category: "숙소",
-              badgeClass: "badge-hotel",
-              title: "삿포로 시내 호텔 체크인 및 휴식",
-              desc: "가족 짐 풀기 및 주차 확인 (삿포로 시내 중심가)",
-              query: "삿포로역"
-            },
-            {
-              time: "17:30 - 20:00",
-              category: "관광",
-              badgeClass: "badge-tour",
-              title: "오도리 공원 & 삿포로 TV타워 산책 및 저녁 식사",
-              desc: "저녁 식사: 삿포로 명물 징기스칸(양고기) 또는 스시 코스",
-              query: "삿포로 오도리 공원"
-            }
+            { time: "06:00", category: "공항", badgeClass: "badge-flight", title: "인천공항 제2터미널 집결 및 수속", desc: "대한항공(KE) 체크인 및 위탁수하물 부치기, 출국 심사", query: "인천국제공항 제2여객터미널" },
+            { time: "08:30 - 11:15", category: "항공", badgeClass: "badge-flight", title: "인천(ICN) ➔ 신치토세(CTS) 비행", desc: "대한항공 탑승 (약 2시간 45분 소요, 기내식 제공)", query: "신치토세 공항" },
+            { time: "11:30 - 13:00", category: "렌트", badgeClass: "badge-rent", title: "신치토세 공항 입국 심사 및 렌터카 픽업", desc: "수속 후 셔틀 이동, 7~8인승 미니밴 인수 및 차량 점검(ETC 장착)", query: "New Chitose Airport Car Rental" },
+            { time: "13:30 - 14:30", category: "식사", badgeClass: "badge-food", title: "공항 근교 또는 치토세 시내 점심", desc: "치토세 라멘 또는 스프카레 식당 방문", query: "신치토세공항 국내선 라멘도장" },
+            { time: "15:30 - 16:30", category: "숙소", badgeClass: "badge-hotel", title: "삿포로 시내 호텔 체크인 및 휴식", desc: "가족 짐 풀기 및 주차 확인", query: "삿포로역" },
+            { time: "17:30 - 20:00", category: "관광", badgeClass: "badge-tour", title: "오도리 공원 & 삿포로 TV타워 산책 및 저녁", desc: "저녁 식사: 삿포로 명물 징기스칸(양고기) 또는 스시", query: "삿포로 오도리 공원" }
           ]
         },
         {
@@ -324,62 +406,13 @@
           date: "10/13 (화)",
           title: "비에이 & 후라노 단풍 드라이브 (렌터카 코스)",
           items: [
-            {
-              time: "08:00 - 10:30",
-              category: "이동",
-              badgeClass: "badge-rent",
-              title: "삿포로 ➔ 후라노 이동 (고속도로 드라이브)",
-              desc: "휴게소 1회 경유, 10월 중순 홋카이도 가을 단풍 풍경 감상",
-              query: "팜 토미타"
-            },
-            {
-              time: "10:30 - 11:30",
-              category: "관광",
-              badgeClass: "badge-tour",
-              title: "팜 토미타 (Farm Tomita)",
-              desc: "온실 화원 및 라벤더 아이스크림 시식, 가을 꽃밭 산책",
-              query: "팜 토미타"
-            },
-            {
-              time: "12:00 - 13:00",
-              category: "식사",
-              badgeClass: "badge-food",
-              title: "비에이 역 근처 점심 식사",
-              desc: "준페이(에비동) 또는 현지 카레/우동 맛집",
-              query: "비에이역 맛집 준페이"
-            },
-            {
-              time: "13:30 - 14:15",
-              category: "관광",
-              badgeClass: "badge-tour",
-              title: "청의 호수 (아오이이케)",
-              desc: "신비로운 에메랄드빛 호수 및 자작나무 숲길 산책",
-              query: "청의호수 비에이"
-            },
-            {
-              time: "14:30 - 15:10",
-              category: "관광",
-              badgeClass: "badge-tour",
-              title: "흰수염 폭포 (시라히게 폭포)",
-              desc: "블루리버 다리 위에서 폭포 절경 감상",
-              query: "흰수염폭포"
-            },
-            {
-              time: "15:30 - 16:30",
-              category: "관광",
-              badgeClass: "badge-tour",
-              title: "사계채의 언덕 & 패치워크 로드",
-              desc: "광활한 구릉지 파노라마 감상, 켄과 메리의 나무 경유",
-              query: "사계채의 언덕"
-            },
-            {
-              time: "19:00 - 21:00",
-              category: "식사",
-              badgeClass: "badge-food",
-              title: "삿포로 귀환 및 가족 만찬",
-              desc: "스스키노 주변 이자카야 또는 카이센동 식사",
-              query: "삿포로 스스키노"
-            }
+            { time: "08:00 - 10:30", category: "이동", badgeClass: "badge-rent", title: "삿포로 ➔ 후라노 이동 (고속도로 드라이브)", desc: "휴게소 1회 경유, 10월 홋카이도 가을 단풍 풍경 감상", query: "팜 토미타" },
+            { time: "10:30 - 11:30", category: "관광", badgeClass: "badge-tour", title: "팜 토미타 (Farm Tomita)", desc: "온실 화원 및 라벤더 아이스크림 시식, 가을 꽃밭 산책", query: "팜 토미타" },
+            { time: "12:00 - 13:00", category: "식사", badgeClass: "badge-food", title: "비에이 역 근처 점심 식사", desc: "준페이(에비동) 또는 현지 카레/우동 맛집", query: "비에이역 맛집 준페이" },
+            { time: "13:30 - 14:15", category: "관광", badgeClass: "badge-tour", title: "청의 호수 (아오이이케)", desc: "신비로운 에메랄드빛 호수 및 자작나무 숲길 산책", query: "청의호수 비에이" },
+            { time: "14:30 - 15:10", category: "관광", badgeClass: "badge-tour", title: "흰수염 폭포 (시라히게 폭포)", desc: "블루리버 다리 위에서 폭포 절경 감상", query: "흰수염폭포" },
+            { time: "15:30 - 16:30", category: "관광", badgeClass: "badge-tour", title: "사계채의 언덕 & 패치워크 로드", desc: "광활한 구릉지 파노라마 감상, 켄과 메리의 나무 경유", query: "사계채의 언덕" },
+            { time: "19:00 - 21:00", category: "식사", badgeClass: "badge-food", title: "삿포로 귀환 및 가족 만찬", desc: "스스키노 주변 이자카야 또는 카이센동 식사", query: "삿포로 스스키노" }
           ]
         },
         {
@@ -387,46 +420,11 @@
           date: "10/14 (수)",
           title: "오타루 운하 감성 산책 & 조잔케이 온천 힐링",
           items: [
-            {
-              time: "09:30 - 10:30",
-              category: "이동",
-              badgeClass: "badge-rent",
-              title: "삿포로 ➔ 오타루 이동 (렌터카 약 45분)",
-              desc: "해안 도로 드라이브 후 오타루 시내 주차",
-              query: "오타루 운하"
-            },
-            {
-              time: "10:30 - 13:00",
-              category: "관광",
-              badgeClass: "badge-tour",
-              title: "오타루 오르골당 & 사카이마치 거리",
-              desc: "르타오 본점 디저트 시식, 기타이치 유리 공방 관람",
-              query: "오타루 오르골당"
-            },
-            {
-              time: "13:00 - 14:15",
-              category: "식사",
-              badgeClass: "badge-food",
-              title: "오타루 스시거리 점심 식사",
-              desc: "오타루 명물 신선한 초밥 세트 만찬",
-              query: "오타루 스시거리"
-            },
-            {
-              time: "15:00 - 17:30",
-              category: "관광",
-              badgeClass: "badge-tour",
-              title: "조잔케이 온천 마을 이동 & 당일 온천 / 단풍",
-              desc: "계곡 단풍 산책로 및 가족 당일 온천욕 즐기기",
-              query: "조잔케이 온천"
-            },
-            {
-              time: "18:30 - 20:30",
-              category: "식사",
-              badgeClass: "badge-food",
-              title: "삿포로 귀환 및 삿포로 맥주박물관 가든 디너",
-              desc: "삿포로 맥주원 생맥주와 게 요리 코스",
-              query: "삿포로 맥주박물관"
-            }
+            { time: "09:30 - 10:30", category: "이동", badgeClass: "badge-rent", title: "삿포로 ➔ 오타루 이동 (렌터카 약 45분)", desc: "해안 도로 드라이브 후 오타루 시내 주차", query: "오타루 운하" },
+            { time: "10:30 - 13:00", category: "관광", badgeClass: "badge-tour", title: "오타루 오르골당 & 사카이마치 거리", desc: "르타오 본점 디저트 시식, 기타이치 유리 공방 관람", query: "오타루 오르골당" },
+            { time: "13:00 - 14:15", category: "식사", badgeClass: "badge-food", title: "오타루 스시거리 점심 식사", desc: "오타루 명물 신선한 초밥 세트 만찬", query: "오타루 스시거리" },
+            { time: "15:00 - 17:30", category: "관광", badgeClass: "badge-tour", title: "조잔케이 온천 마을 이동 & 당일 온천 / 단풍", desc: "계곡 단풍 산책로 및 가족 당일 온천욕 즐기기", query: "조잔케이 온천" },
+            { time: "18:30 - 20:30", category: "식사", badgeClass: "badge-food", title: "삿포로 귀환 및 맥주박물관 디너", desc: "삿포로 맥주원 생맥주와 게 요리 코스", query: "삿포로 맥주박물관" }
           ]
         },
         {
@@ -434,38 +432,10 @@
           date: "10/15 (목)",
           title: "삿포로 시내 여유 일정 & 기념품 쇼핑",
           items: [
-            {
-              time: "10:00 - 11:30",
-              category: "관광",
-              badgeClass: "badge-tour",
-              title: "시로이 코이비토 파크",
-              desc: "초콜릿 팩토리 및 예쁜 정원 기념사진 촬영",
-              query: "시로이 고이비토 파크"
-            },
-            {
-              time: "12:00 - 13:30",
-              category: "식사",
-              badgeClass: "badge-food",
-              title: "삿포로 장외시장(니조시장) 점심",
-              desc: "신선한 털게, 우니, 해산물 덮밥 식사",
-              query: "삿포로 니조시장"
-            },
-            {
-              time: "14:00 - 17:00",
-              category: "쇼핑",
-              badgeClass: "badge-tour",
-              title: "다누키코지 상점가 & 메가돈키호테 쇼핑",
-              desc: "가족 선물, 의약품, 면세품 구매 (여권 필수 지참)",
-              query: "메가 돈키호테 삿포로 다누키코지 본점"
-            },
-            {
-              time: "18:00 - 20:30",
-              category: "식사",
-              badgeClass: "badge-food",
-              title: "마지막 밤 가족 정식 만찬",
-              desc: "샤브샤브 또는 와규 야키니쿠 전문점",
-              query: "삿포로역 맛집"
-            }
+            { time: "10:00 - 11:30", category: "관광", badgeClass: "badge-tour", title: "시로이 코이비토 파크", desc: "초콜릿 팩토리 및 예쁜 정원 기념사진 촬영", query: "시로이 고이비토 파크" },
+            { time: "12:00 - 13:30", category: "식사", badgeClass: "badge-food", title: "삿포로 장외시장(니조시장) 점심", desc: "신선한 털게, 우니, 해산물 덮밥 식사", query: "삿포로 니조시장" },
+            { time: "14:00 - 17:00", category: "쇼핑", badgeClass: "badge-tour", title: "다누키코지 상점가 & 메가돈키호테 쇼핑", desc: "가족 선물, 의약품, 면세품 구매 (여권 필수 지참)", query: "메가 돈키호테 삿포로 다누키코지 본점" },
+            { time: "18:00 - 20:30", category: "식사", badgeClass: "badge-food", title: "마지막 밤 가족 정식 만찬", desc: "샤브샤브 또는 와규 야키니쿠 전문점", query: "삿포로역 맛집" }
           ]
         },
         {
@@ -473,57 +443,16 @@
           date: "10/16 (금)",
           title: "신치토세 공항 이동 & 귀국",
           items: [
-            {
-              time: "09:30 - 10:30",
-              category: "숙소",
-              badgeClass: "badge-hotel",
-              title: "호텔 체크아웃 및 짐 정리",
-              desc: "차량에 6인 캐리어 수납 및 분실물 최종 확인",
-              query: "삿포로역"
-            },
-            {
-              time: "10:30 - 11:40",
-              category: "이동",
-              badgeClass: "badge-rent",
-              title: "삿포로 ➔ 신치토세 공항 이동",
-              desc: "공항 근처 주유소에서 기름 가득 주유(満タン)",
-              query: "신치토세 공항 렌터카 영업소"
-            },
-            {
-              time: "11:40 - 12:20",
-              category: "렌트",
-              badgeClass: "badge-rent",
-              title: "렌터카 반납 및 공항 셔틀 탑승",
-              desc: "차량 외관 확인 및 ETC 하이패스 요금 정산",
-              query: "신치토세 공항"
-            },
-            {
-              time: "12:30 - 14:00",
-              category: "공항",
-              badgeClass: "badge-flight",
-              title: "대한항공 탑승 수속 & 면세점 쇼핑",
-              desc: "로이스 초콜릿, 시로이코이비토 등 선물 구매 및 점심",
-              query: "신치토세 국제공항"
-            },
-            {
-              time: "14:05 - 17:15",
-              category: "항공",
-              badgeClass: "badge-flight",
-              title: "신치토세(CTS) ➔ 인천(ICN) 비행",
-              desc: "대한항공 귀국편 탑승, 인천 도착 후 가족 해산",
-              query: "인천국제공항 제2여객터미널"
-            }
+            { time: "09:30 - 10:30", category: "숙소", badgeClass: "badge-hotel", title: "호텔 체크아웃 및 짐 정리", desc: "차량에 6인 캐리어 수납 및 분실물 최종 확인", query: "삿포로역" },
+            { time: "10:30 - 11:40", category: "이동", badgeClass: "badge-rent", title: "삿포로 ➔ 신치토세 공항 이동", desc: "공항 근처 주유소에서 만유(満タン) 주유", query: "신치토세 공항 렌터카 영업소" },
+            { time: "11:40 - 12:20", category: "렌트", badgeClass: "badge-rent", title: "렌터카 반납 및 공항 셔틀 탑승", desc: "차량 외관 확인 및 ETC 하이패스 정산", query: "신치토세 공항" },
+            { time: "12:30 - 14:00", category: "공항", badgeClass: "badge-flight", title: "대한항공 탑승 수속 & 면세점 쇼핑", desc: "로이스 초콜릿, 선물 구매 및 점심 식사", query: "신치토세 국제공항" },
+            { time: "14:05 - 17:15", category: "항공", badgeClass: "badge-flight", title: "신치토세(CTS) ➔ 인천(ICN) 비행", desc: "대한항공 귀국편 탑승, 인천 도착 후 가족 해산", query: "인천국제공항 제2여객터미널" }
           ]
         }
       ],
       accommodations: [
-        {
-          name: "삿포로 시내 호텔 (예: 크로스 호텔 또는 그랜드 호텔)",
-          period: "10/12 ~ 10/16 (4박)",
-          time: "체크인 15:00 / 체크아웃 11:00",
-          address: "Sapporo, Chuo Ward",
-          note: "가족 룸 2~3실 예약, 렌터카 주차 가능 여부 사전 확인 필요"
-        }
+        { name: "삿포로 시내 호텔 (예: 크로스 호텔 또는 그랜드 호텔)", period: "10/12 ~ 10/16 (4박)", time: "체크인 15:00 / 체크아웃 11:00", address: "Sapporo, Chuo Ward", note: "가족 룸 2~3실 예약, 렌터카 주차 가능 여부 사전 확인 필요" }
       ],
       rentcar: {
         company: "토요타 / 오릭스 / 타임즈 렌터카 (신치토세공항점)",
@@ -536,83 +465,109 @@
         { text: "국제운전면허증 및 국내 면허증 (운전자 필수)", category: "필수 서류" },
         { text: "대한항공 E-ticket 모바일 저장 및 출력본", category: "필수 서류" },
         { text: "Visit Japan Web(VJW) 입국/세관 QR 사전 등록", category: "필수 서류" },
-        { text: "해외 결제 카드 (트래블로그/트래블월렛 등) 및 현금(엔화)", category: "금융" },
-        { text: "10월 홋카이도 기온 대비 외투 (경량패딩, 바람막이, 머플러)", category: "의류" },
-        { text: "110V 돼지코 어댑터 & 보조배터리 (기내 수하물 보관)", category: "전자기기" },
-        { text: "가족 상비약 (소화제, 두통약, 멀미약, 감기약, 대일밴드)", category: "의약품" }
+        { text: "해외 결제 카드 (트래블로그/트래블월렛 등) 및 엔화 현금", category: "금융" },
+        { text: "10월 홋카이도 외투 (경량패딩, 바람막이, 머플러)", category: "의류" },
+        { text: "110V 돼지코 어댑터 & 보조배터리 (기내 수하물)", category: "전자기기" },
+        { text: "가족 상비약 (소화제, 두통약, 멀미약, 감기약, 밴드)", category: "의약품" }
+      ],
+      // 엑셀에서 추출한 예산 및 지출 기본 데이터
+      budget: [
+        { type: "사전 결제", item: "항공권 예약 (출국/인천➔치토세)", method: "신용카드", cost: 1017200, paid: 17200, note: "상품권 100만원 사용 / 실결제 17,200원" },
+        { type: "사전 결제", item: "항공권 예약 (귀국/치토세➔인천)", method: "신용카드", cost: 308600, paid: 308600, note: "마일리지 25,000 사용" },
+        { type: "사전 결제", item: "삿포로 호텔 4박 (가족실)", method: "신용카드", cost: 708144, paid: 488088, note: "숙박 리워드 사용 차감" },
+        { type: "사전 결제", item: "렌터카 4박 5일 (7~8인승 미니밴)", method: "신용카드", cost: 450000, paid: 450000, note: "NOC 안심보험 포함" },
+        { type: "사전 결제", item: "해외 유심/eSIM (소프트뱅크)", method: "신용카드", cost: 11000, paid: 11000, note: "더모아 카드 결제" },
+        { type: "현지 지출", item: "현지 주유비 및 고속도로 통행료(ETC)", method: "엔화 현금/카드", cost: 150000, paid: 150000, note: "비에이 왕복 및 공항 이동" },
+        { type: "현지 지출", item: "가족 식비 및 디저트 (예산)", method: "엔화 현금/카드", cost: 800000, paid: 800000, note: "스시, 징기스칸, 카이센동 등" }
       ]
     };
 
-    // 탭 렌더링 함수
+    let tripData = JSON.parse(localStorage.getItem('hokkaido_trip_data')) || DEFAULT_DATA;
+    if (!tripData.budget) tripData.budget = DEFAULT_DATA.budget;
+
+    // 렌더링
     function renderApp() {
+      document.getElementById('header-title').innerText = tripData.header.title;
+      document.getElementById('header-subtitle').innerText = tripData.header.subtitle;
+      document.getElementById('sum-members').innerText = tripData.header.members;
+      document.getElementById('sum-rent').innerText = tripData.header.rent;
+      document.getElementById('sum-flight').innerText = tripData.header.flight;
+      document.getElementById('sum-hotel').innerText = tripData.header.hotel;
+
       const container = document.getElementById('tabContainers');
       container.innerHTML = '';
 
-      // 일자별 일정 렌더링 (Day 1 ~ Day 5)
-      TRIP_DATA.days.forEach((day, index) => {
+      // Day 1 ~ Day 5 일정 렌더링
+      tripData.days.forEach((day, dIdx) => {
         const dayDiv = document.createElement('div');
-        dayDiv.className = `tab-content ${index === 0 ? 'active' : ''}`;
-        dayDiv.id = `tab-${index}`;
+        dayDiv.className = `tab-content ${dIdx === 0 ? 'active' : ''}`;
+        dayDiv.id = `tab-${dIdx}`;
 
         let timelineHtml = `
           <div class="info-card">
-            <h3>📅 Day ${day.dayNum} - ${day.date}</h3>
-            <p style="font-size:0.85rem; color:var(--text); font-weight:600;">${day.title}</p>
+            <h3>📅 Day ${day.dayNum} - <span class="editable" data-day="${dIdx}" data-type="date">${day.date}</span></h3>
+            <p style="font-weight:600;" class="editable" data-day="${dIdx}" data-type="title">${day.title}</p>
           </div>
-          <div class="timeline">
+          <div class="timeline" id="timeline-${dIdx}">
         `;
 
-        day.items.forEach(item => {
+        day.items.forEach((item, iIdx) => {
           const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(item.query)}`;
           timelineHtml += `
-            <div class="timeline-item">
+            <div class="timeline-item" id="item-${dIdx}-${iIdx}">
               <div class="timeline-dot"></div>
               <div class="timeline-body">
                 <div class="timeline-header">
-                  <span class="time-badge">${item.time}</span>
-                  <span class="badge ${item.badgeClass}">${item.category}</span>
+                  <span class="time-badge editable" data-day="${dIdx}" data-idx="${iIdx}" data-field="time">${item.time}</span>
+                  <span class="badge ${item.badgeClass || 'badge-tour'} editable" data-day="${dIdx}" data-idx="${iIdx}" data-field="category">${item.category}</span>
                 </div>
-                <div class="place-title">${item.title}</div>
-                <div class="place-desc">${item.desc}</div>
+                <div class="place-title editable" data-day="${dIdx}" data-idx="${iIdx}" data-field="title">${item.title}</div>
+                <div class="place-desc editable" data-day="${dIdx}" data-idx="${iIdx}" data-field="desc">${item.desc}</div>
                 <div class="item-footer">
-                  <span style="color:var(--text-muted);">📍 ${item.query}</span>
+                  <span>📍 <span class="editable" data-day="${dIdx}" data-idx="${iIdx}" data-field="query">${item.query}</span></span>
                   <a href="${mapUrl}" target="_blank" class="map-link">🗺️ 지도보기</a>
+                </div>
+                <div class="admin-controls">
+                  <button class="btn-small btn-danger" onclick="deleteItem(${dIdx}, ${iIdx})">🗑️ 이 일정 삭제</button>
                 </div>
               </div>
             </div>
           `;
         });
 
-        timelineHtml += `</div>`;
+        timelineHtml += `</div>
+          <div class="admin-controls">
+            <button class="btn-small btn-add" onclick="addItem(${dIdx})">➕ Day ${dIdx + 1} 새 일정 추가하기</button>
+          </div>
+        `;
         dayDiv.innerHTML = timelineHtml;
         container.appendChild(dayDiv);
       });
 
-      // 숙소 & 차량 탭 (Tab 5)
+      // 숙소 & 렌터카 탭 (tab-5)
       const hotelDiv = document.createElement('div');
       hotelDiv.className = 'tab-content';
       hotelDiv.id = 'tab-5';
       let hotelHtml = `
         <div class="info-card">
           <h3>🚗 렌터카 대여 정보</h3>
-          <p><strong>차종:</strong> ${TRIP_DATA.rentcar.vehicle}</p>
-          <p><strong>업체:</strong> ${TRIP_DATA.rentcar.company}</p>
-          <p><strong>대여 기간:</strong> ${TRIP_DATA.rentcar.period}</p>
-          <p style="margin-top:6px; font-size:0.8rem; color:var(--accent);">⚠️ ${TRIP_DATA.rentcar.notes}</p>
+          <p><strong>차종:</strong> <span class="editable" data-type="rent-vehicle">${tripData.rentcar.vehicle}</span></p>
+          <p><strong>업체:</strong> <span class="editable" data-type="rent-company">${tripData.rentcar.company}</span></p>
+          <p><strong>대여 기간:</strong> <span class="editable" data-type="rent-period">${tripData.rentcar.period}</span></p>
+          <p style="margin-top:6px; font-size:0.8rem; color:var(--accent);">⚠️ <span class="editable" data-type="rent-notes">${tripData.rentcar.notes}</span></p>
         </div>
         <div class="info-card">
           <h3>🏨 숙소 안내</h3>
       `;
-      TRIP_DATA.accommodations.forEach(acc => {
-        const hotelMap = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(acc.name)}`;
+      tripData.accommodations.forEach((acc, aIdx) => {
         hotelHtml += `
           <div style="margin-bottom:12px; padding-bottom:8px; border-bottom:1px dashed var(--border);">
-            <p><strong>숙소명:</strong> ${acc.name}</p>
-            <p><strong>일정:</strong> ${acc.period} (${acc.time})</p>
-            <p><strong>주소:</strong> ${acc.address}</p>
-            <p style="font-size:0.8rem; color:var(--text-muted);">${acc.note}</p>
+            <p><strong>숙소명:</strong> <span class="editable" data-type="acc-name" data-idx="${aIdx}">${acc.name}</span></p>
+            <p><strong>일정:</strong> <span class="editable" data-type="acc-period" data-idx="${aIdx}">${acc.period}</span> (<span class="editable" data-type="acc-time" data-idx="${aIdx}">${acc.time}</span>)</p>
+            <p><strong>주소:</strong> <span class="editable" data-type="acc-address" data-idx="${aIdx}">${acc.address}</span></p>
+            <p style="font-size:0.8rem; color:var(--text-muted);"><span class="editable" data-type="acc-note" data-idx="${aIdx}">${acc.note}</span></p>
             <div style="margin-top:8px;">
-              <a href="${hotelMap}" target="_blank" class="map-link">🗺️ 숙소 위치 구글맵</a>
+              <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(acc.name)}" target="_blank" class="map-link">🗺️ 숙소 위치 구글맵</a>
             </div>
           </div>
         `;
@@ -621,17 +576,17 @@
       hotelDiv.innerHTML = hotelHtml;
       container.appendChild(hotelDiv);
 
-      // 준비물 체크리스트 탭 (Tab 6)
+      // 준비물 체크리스트 탭 (tab-6)
       const checkDiv = document.createElement('div');
       checkDiv.className = 'tab-content';
       checkDiv.id = 'tab-6';
       let checkHtml = `
         <div class="info-card">
           <h3>🧳 가족 여행 준비물 체크리스트</h3>
-          <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:10px;">스마트폰에서 체크박스를 누르면 저장됩니다.</p>
+          <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:10px;">각자 스마트폰에서 체크박스를 누르면 저장됩니다.</p>
           <ul class="checklist-group">
       `;
-      TRIP_DATA.checklists.forEach((chk, idx) => {
+      tripData.checklists.forEach((chk, idx) => {
         const saved = localStorage.getItem(`chk_${idx}`) === 'true';
         checkHtml += `
           <li class="check-item ${saved ? 'done' : ''}" id="check-item-${idx}">
@@ -643,6 +598,153 @@
       checkHtml += `</ul></div>`;
       checkDiv.innerHTML = checkHtml;
       container.appendChild(checkDiv);
+
+      // 💰 경비 관리 탭 (tab-7)
+      const budgetDiv = document.createElement('div');
+      budgetDiv.className = 'tab-content';
+      budgetDiv.id = 'tab-7';
+
+      // 경비 계산
+      let totalCost = 0;
+      let totalPaid = 0;
+      tripData.budget.forEach(b => {
+        totalCost += Number(b.cost || 0);
+        totalPaid += Number(b.paid || 0);
+      });
+
+      let budgetHtml = `
+        <div class="info-card">
+          <h3>💰 홋카이도 여행 예산 및 지출 (관리자)</h3>
+          
+          <div class="budget-summary-box">
+            <div class="budget-card-mini">
+              <span>총 소요 비용 (정가)</span>
+              <strong>${totalCost.toLocaleString()} 원</strong>
+            </div>
+            <div class="budget-card-mini">
+              <span>실제 지출 총액</span>
+              <strong style="color:var(--danger);">${totalPaid.toLocaleString()} 원</strong>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="budget-table">
+              <thead>
+                <tr>
+                  <th>구분</th>
+                  <th>항목명</th>
+                  <th>결제수단</th>
+                  <th>실제 지출 (KRW)</th>
+                  <th>비고 / 할인 내용</th>
+                  <th>관리</th>
+                </tr>
+              </thead>
+              <tbody>
+      `;
+
+      tripData.budget.forEach((item, bIdx) => {
+        budgetHtml += `
+          <tr>
+            <td><span class="badge" style="background:#475569;">${item.type}</span></td>
+            <td><strong>${item.item}</strong></td>
+            <td>${item.method}</td>
+            <td style="color:#b91c1c; font-weight:bold;">${Number(item.paid).toLocaleString()}원</td>
+            <td style="color:var(--text-muted); font-size:0.73rem;">${item.note || '-'}</td>
+            <td>
+              <button class="btn-small btn-danger" onclick="deleteBudgetItem(${bIdx})">삭제</button>
+            </td>
+          </tr>
+        `;
+      });
+
+      budgetHtml += `
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 새 지출 추가 입력 폼 -->
+          <div class="budget-form">
+            <h4>➕ 새 지출 항목 추가</h4>
+            <div class="form-row">
+              <select id="new-b-type" class="form-input">
+                <option value="사전 결제">사전 결제</option>
+                <option value="현지 식비">현지 식비</option>
+                <option value="교통/주유">교통/주유</option>
+                <option value="쇼핑/선물">쇼핑/선물</option>
+                <option value="관광/입장료">관광/입장료</option>
+                <option value="기타">기타 지출</option>
+              </select>
+              <input type="text" id="new-b-item" class="form-input" placeholder="항목명 (예: 징기스칸 저녁)">
+            </div>
+            <div class="form-row">
+              <input type="text" id="new-b-method" class="form-input" placeholder="결제수단 (예: 트래블로그, 현금)">
+              <input type="number" id="new-b-paid" class="form-input" placeholder="실제 지출금액 (원)">
+            </div>
+            <div style="margin-bottom:8px;">
+              <input type="text" id="new-b-note" class="form-input" placeholder="비고 / 메모">
+            </div>
+            <button class="btn-small btn-add" style="margin-top:0;" onclick="addBudgetItem()">지출 내역에 등록하기</button>
+          </div>
+        </div>
+      `;
+      budgetDiv.innerHTML = budgetHtml;
+      container.appendChild(budgetDiv);
+
+      applyEditState();
+    }
+
+    // 경비 탭 클릭 시 비밀번호 검증 (7149)
+    function switchBudgetTab() {
+      if (!isBudgetUnlocked) {
+        const inputPwd = prompt("🔒 관리자 전용 비밀번호를 입력해 주세요 (4자리):");
+        if (inputPwd === ADMIN_PASSWORD) {
+          isBudgetUnlocked = true;
+          alert("비밀번호가 확인되었습니다. 경비 내역을 확인합니다.");
+          switchTab(7);
+        } else if (inputPwd !== null) {
+          alert("비밀번호가 일치하지 않습니다.");
+        }
+      } else {
+        switchTab(7);
+      }
+    }
+
+    // 지출 항목 추가
+    function addBudgetItem() {
+      const type = document.getElementById('new-b-type').value;
+      const item = document.getElementById('new-b-item').value.trim();
+      const method = document.getElementById('new-b-method').value.trim() || '신용카드';
+      const paid = parseInt(document.getElementById('new-b-paid').value) || 0;
+      const note = document.getElementById('new-b-note').value.trim();
+
+      if (!item) {
+        alert("항목명을 입력해 주세요.");
+        return;
+      }
+
+      tripData.budget.push({
+        type: type,
+        item: item,
+        method: method,
+        cost: paid,
+        paid: paid,
+        note: note
+      });
+
+      localStorage.setItem('hokkaido_trip_data', JSON.stringify(tripData));
+      renderApp();
+      switchTab(7);
+      alert("새로운 지출 내역이 추가되었습니다.");
+    }
+
+    // 지출 항목 삭제
+    function deleteBudgetItem(idx) {
+      if (confirm("해당 지출 내역을 삭제하시겠습니까?")) {
+        tripData.budget.splice(idx, 1);
+        localStorage.setItem('hokkaido_trip_data', JSON.stringify(tripData));
+        renderApp();
+        switchTab(7);
+      }
     }
 
     // 탭 전환
@@ -654,7 +756,106 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // 체크리스트 저장
+    // 일정 편집 모드 토글 (비밀번호: 7149)
+    function toggleEditMode() {
+      if (!isEditMode) {
+        const pwd = prompt("일정 편집 비밀번호를 입력해 주세요:");
+        if (pwd === ADMIN_PASSWORD) {
+          isEditMode = true;
+          document.body.classList.add('edit-mode');
+          document.getElementById('modeBtn').innerText = "✏️ 편집 중 (잠그기)";
+          document.getElementById('modeBtn').className = "float-btn editing";
+          document.getElementById('saveBtn').style.display = "flex";
+          document.getElementById('resetBtn').style.display = "flex";
+          alert("일정 편집 모드가 켜졌습니다. 수정할 글자를 터치하여 변경하세요.");
+        } else if (pwd !== null) {
+          alert("비밀번호가 일치하지 않습니다.");
+        }
+      } else {
+        if (confirm("일정 편집 모드를 종료하시겠습니까?")) {
+          isEditMode = false;
+          document.body.classList.remove('edit-mode');
+          document.getElementById('modeBtn').innerText = "🔒 일정 편집 모드";
+          document.getElementById('modeBtn').className = "float-btn lock";
+          document.getElementById('saveBtn').style.display = "none";
+          document.getElementById('resetBtn').style.display = "none";
+        }
+      }
+      applyEditState();
+    }
+
+    function applyEditState() {
+      const editables = document.querySelectorAll('.editable, #header-title, #header-subtitle, #sum-members, #sum-rent, #sum-flight, #sum-hotel');
+      editables.forEach(el => {
+        el.contentEditable = isEditMode ? "true" : "false";
+      });
+    }
+
+    // 일정 변경 사항 일괄 저장
+    function saveAllChanges() {
+      tripData.header.title = document.getElementById('header-title').innerText.trim();
+      tripData.header.subtitle = document.getElementById('header-subtitle').innerText.trim();
+      tripData.header.members = document.getElementById('sum-members').innerText.trim();
+      tripData.header.rent = document.getElementById('sum-rent').innerText.trim();
+      tripData.header.flight = document.getElementById('sum-flight').innerText.trim();
+      tripData.header.hotel = document.getElementById('sum-hotel').innerText.trim();
+
+      tripData.days.forEach((day, dIdx) => {
+        const dateEl = document.querySelector(`.editable[data-day="${dIdx}"][data-type="date"]`);
+        const titleEl = document.querySelector(`.editable[data-day="${dIdx}"][data-type="title"]`);
+        if (dateEl) day.date = dateEl.innerText.trim();
+        if (titleEl) day.title = titleEl.innerText.trim();
+
+        day.items.forEach((item, iIdx) => {
+          const timeEl = document.querySelector(`.editable[data-day="${dIdx}"][data-idx="${iIdx}"][data-field="time"]`);
+          const catEl = document.querySelector(`.editable[data-day="${dIdx}"][data-idx="${iIdx}"][data-field="category"]`);
+          const tEl = document.querySelector(`.editable[data-day="${dIdx}"][data-idx="${iIdx}"][data-field="title"]`);
+          const descEl = document.querySelector(`.editable[data-day="${dIdx}"][data-idx="${iIdx}"][data-field="desc"]`);
+          const queryEl = document.querySelector(`.editable[data-day="${dIdx}"][data-idx="${iIdx}"][data-field="query"]`);
+
+          if (timeEl) item.time = timeEl.innerText.trim();
+          if (catEl) item.category = catEl.innerText.trim();
+          if (tEl) item.title = tEl.innerText.trim();
+          if (descEl) item.desc = descEl.innerText.trim();
+          if (queryEl) item.query = queryEl.innerText.trim();
+        });
+      });
+
+      localStorage.setItem('hokkaido_trip_data', JSON.stringify(tripData));
+      alert("✅ 수정 사항이 안전하게 저장되었습니다!");
+      renderApp();
+    }
+
+    function addItem(dayIdx) {
+      tripData.days[dayIdx].items.push({
+        time: "12:00",
+        category: "일정",
+        badgeClass: "badge-tour",
+        title: "새로운 일정 제목 입력",
+        desc: "상세 내용을 입력하세요.",
+        query: "장소명 또는 식당"
+      });
+      renderApp();
+      saveAllChanges();
+    }
+
+    function deleteItem(dayIdx, itemIdx) {
+      if (confirm("이 일정을 삭제하시겠습니까?")) {
+        tripData.days[dayIdx].items.splice(itemIdx, 1);
+        renderApp();
+        saveAllChanges();
+      }
+    }
+
+    function resetToDefault() {
+      if (confirm("초기 데이터로 복원하시겠습니까? 모든 수정 사항이 초기화됩니다.")) {
+        localStorage.removeItem('hokkaido_trip_data');
+        tripData = JSON.parse(JSON.stringify(DEFAULT_DATA));
+        renderApp();
+        alert("기본 데이터로 초기화되었습니다.");
+      }
+    }
+
     function toggleCheck(index) {
       const checkbox = document.getElementById(`chk_${index}`);
       const item = document.getElementById(`check-item-${index}`);
@@ -666,7 +867,6 @@
       }
     }
 
-    // 초기 실행
     window.addEventListener('DOMContentLoaded', () => {
       renderApp();
     });
