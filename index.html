@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>홋카이도 가족여행 일정표 (10/12 ~ 10/16)</title>
+  <title>홋카이도 가족여행 일정표 (10/11 ~ 10/15)</title>
   <style>
     :root {
       --primary: #1e3a8a;
@@ -323,7 +323,7 @@
 
   <header>
     <h1 id="header-title" contenteditable="false">❄️ 홋카이도 가족여행 4박 5일</h1>
-    <p id="header-subtitle" contenteditable="false">2026.10.12 (월) ~ 10.16 (금) | 삿포로 & 근교 드라이브</p>
+    <p id="header-subtitle" contenteditable="false">2026.10.11 (일) ~ 10.15 (목) | 삿포로 & 근교 드라이브</p>
   </header>
 
   <!-- 핵심 요약 정보 -->
@@ -334,11 +334,11 @@
     </div>
     <div class="summary-item">
       <span>이동 수단</span>
-      <span id="sum-rent" contenteditable="false">렌터카 (7~8인승 미니밴 대여)</span>
+      <span id="sum-rent" contenteditable="false">스즈키 렌터카 (치토세공항점)</span>
     </div>
     <div class="summary-item">
       <span>항공편 (대한항공)</span>
-      <span id="sum-flight" contenteditable="false">출국 KE771 / 귀국 KE772</span>
+      <span id="sum-flight" contenteditable="false">출국 KE769 (12:35) / 귀국 KE772</span>
     </div>
     <div class="summary-item">
       <span>숙소 정보</span>
@@ -348,11 +348,11 @@
 
   <!-- 일자별 및 부가메뉴 탭 -->
   <nav class="nav-tabs" id="navTabs">
-    <button class="tab-btn active" onclick="switchTab(0)">Day 1 (10/12)</button>
-    <button class="tab-btn" onclick="switchTab(1)">Day 2 (10/13)</button>
-    <button class="tab-btn" onclick="switchTab(2)">Day 3 (10/14)</button>
-    <button class="tab-btn" onclick="switchTab(3)">Day 4 (10/15)</button>
-    <button class="tab-btn" onclick="switchTab(4)">Day 5 (10/16)</button>
+    <button class="tab-btn active" onclick="switchTab(0)">Day 1 (10/11)</button>
+    <button class="tab-btn" onclick="switchTab(1)">Day 2 (10/12)</button>
+    <button class="tab-btn" onclick="switchTab(2)">Day 3 (10/13)</button>
+    <button class="tab-btn" onclick="switchTab(3)">Day 4 (10/14)</button>
+    <button class="tab-btn" onclick="switchTab(4)">Day 5 (10/15)</button>
     <button class="tab-btn" onclick="switchTab(5)">🏨 숙소/차량</button>
     <button class="tab-btn" onclick="switchTab(6)">🧳 준비물</button>
     <button class="tab-btn budget-tab" onclick="switchBudgetTab()">🔒 💰 여행 경비</button>
@@ -362,7 +362,7 @@
     <div id="tabContainers"></div>
   </main>
 
-  <!-- 화면 우측 하단 관리자 버튼 바 -->
+  <!-- 우측 하단 관리자 버튼 바 -->
   <div class="admin-floating-bar" id="adminBar">
     <button class="float-btn lock" id="modeBtn" onclick="toggleEditMode()">🔒 일정 편집 모드</button>
     <button class="float-btn save" id="saveBtn" style="display:none;" onclick="saveAllChanges()">💾 저장</button>
@@ -370,26 +370,21 @@
   </div>
 
   <script>
-    // =========================================================================
-    // 보안 비밀번호 설정 (산현님 요청값: 7149)
-    // =========================================================================
     const ADMIN_PASSWORD = "7149";
     let isEditMode = false;
-    let isBudgetUnlocked = false; // 경비 탭 잠금 해제 상태
+    let isBudgetUnlocked = false;
 
-    // 기본 일정 & 초기 경비 데이터
     const DEFAULT_DATA = {
       header: {
         title: "❄️ 홋카이도 가족여행 4박 5일",
-        subtitle: "2026.10.12 (월) ~ 10.16 (금) | 삿포로 & 근교 드라이브",
+        subtitle: "2026.10.11 (일) ~ 10.15 (목) | 삿포로 & 근교 드라이브",
         members: "장인어른, 장모님, 나, 아내, 처제 2명",
-        rent: "렌터카 (7~8인승 미니밴 대여)",
-        flight: "출국 KE771 / 귀국 KE772",
+        rent: "스즈키 렌터카 (치토세공항점)",
+        flight: "출국 KE769 (12:35) / 귀국 KE772",
         hotel: "삿포로 시내 중심가"
       },
       days: [
         {
-      
           dayNum: 1,
           date: "10/11 (일)",
           title: "삿포로 입국 & 스즈키 렌터카 픽업 및 시내 야경",
@@ -444,10 +439,9 @@
             }
           ]
         },
-        },
         {
           dayNum: 2,
-          date: "10/13 (화)",
+          date: "10/12 (월)",
           title: "비에이 & 후라노 단풍 드라이브 (렌터카 코스)",
           items: [
             { time: "08:00 - 10:30", category: "이동", badgeClass: "badge-rent", title: "삿포로 ➔ 후라노 이동 (고속도로 드라이브)", desc: "휴게소 1회 경유, 10월 홋카이도 가을 단풍 풍경 감상", query: "팜 토미타" },
@@ -461,7 +455,7 @@
         },
         {
           dayNum: 3,
-          date: "10/14 (수)",
+          date: "10/13 (화)",
           title: "오타루 운하 감성 산책 & 조잔케이 온천 힐링",
           items: [
             { time: "09:30 - 10:30", category: "이동", badgeClass: "badge-rent", title: "삿포로 ➔ 오타루 이동 (렌터카 약 45분)", desc: "해안 도로 드라이브 후 오타루 시내 주차", query: "오타루 운하" },
@@ -473,7 +467,7 @@
         },
         {
           dayNum: 4,
-          date: "10/15 (목)",
+          date: "10/14 (수)",
           title: "삿포로 시내 여유 일정 & 기념품 쇼핑",
           items: [
             { time: "10:00 - 11:30", category: "관광", badgeClass: "badge-tour", title: "시로이 코이비토 파크", desc: "초콜릿 팩토리 및 예쁜 정원 기념사진 촬영", query: "시로이 고이비토 파크" },
@@ -484,7 +478,7 @@
         },
         {
           dayNum: 5,
-          date: "10/16 (금)",
+          date: "10/15 (목)",
           title: "신치토세 공항 이동 & 귀국",
           items: [
             { time: "09:30 - 10:30", category: "숙소", badgeClass: "badge-hotel", title: "호텔 체크아웃 및 짐 정리", desc: "차량에 6인 캐리어 수납 및 분실물 최종 확인", query: "삿포로역" },
@@ -496,30 +490,29 @@
         }
       ],
       accommodations: [
-        { name: "삿포로 시내 호텔 (예: 크로스 호텔 또는 그랜드 호텔)", period: "10/12 ~ 10/16 (4박)", time: "체크인 15:00 / 체크아웃 11:00", address: "Sapporo, Chuo Ward", note: "가족 룸 2~3실 예약, 렌터카 주차 가능 여부 사전 확인 필요" }
+        { name: "삿포로 시내 호텔 (예: 크로스 호텔 또는 그랜드 호텔)", period: "10/11 ~ 10/15 (4박)", time: "체크인 15:00 / 체크아웃 11:00", address: "Sapporo, Chuo Ward", note: "가족 룸 2~3실 예약, 렌터카 주차 가능 여부 사전 확인 필요" }
       ],
       rentcar: {
-        company: "토요타 / 오릭스 / 타임즈 렌터카 (신치토세공항점)",
-        vehicle: "7~8인승 미니밴 (알파드 / 벨파이어 / 세레나급)",
-        period: "10/12 12:00 ~ 10/16 12:30",
-        notes: "국제운전면허증 + 국내면허증 + 여권 필수 지참, ETC 카드 및 NOC 안심보험 가입"
+        company: "스즈키 렌터카 (신치토세공항점)",
+        vehicle: "7~8인승 미니밴 (예약번호: R0MQSUXK)",
+        period: "10/11 16:30 ~ 10/15 12:00",
+        notes: "국제운전면허증 + 국내면허증 + 여권 필수 지참, ETC 카드 대여 확인"
       },
       checklists: [
         { text: "여권 (만료일 6개월 이상 잔여 여부 확인)", category: "필수 서류" },
         { text: "국제운전면허증 및 국내 면허증 (운전자 필수)", category: "필수 서류" },
-        { text: "대한항공 E-ticket 모바일 저장 및 출력본", category: "필수 서류" },
+        { text: "대한항공 E-ticket 모바일 저장 및 출력본 (KE769)", category: "필수 서류" },
         { text: "Visit Japan Web(VJW) 입국/세관 QR 사전 등록", category: "필수 서류" },
         { text: "해외 결제 카드 (트래블로그/트래블월렛 등) 및 엔화 현금", category: "금융" },
         { text: "10월 홋카이도 외투 (경량패딩, 바람막이, 머플러)", category: "의류" },
-        { text: "110V 돼지코 어댑터 & 보조배터리 (기내 수하물)", category: "전자기기" },
+        { text: "110V 돼지코 어댑터 & 보조배터리 (기내 수하물 보관)", category: "전자기기" },
         { text: "가족 상비약 (소화제, 두통약, 멀미약, 감기약, 밴드)", category: "의약품" }
       ],
-      // 엑셀에서 추출한 예산 및 지출 기본 데이터
       budget: [
-        { type: "사전 결제", item: "항공권 예약 (출국/인천➔치토세)", method: "신용카드", cost: 1017200, paid: 17200, note: "상품권 100만원 사용 / 실결제 17,200원" },
+        { type: "사전 결제", item: "항공권 예약 (인천➔치토세 KE769)", method: "신용카드", cost: 1017200, paid: 17200, note: "상품권 100만원 사용 / 실결제 17,200원" },
         { type: "사전 결제", item: "항공권 예약 (귀국/치토세➔인천)", method: "신용카드", cost: 308600, paid: 308600, note: "마일리지 25,000 사용" },
         { type: "사전 결제", item: "삿포로 호텔 4박 (가족실)", method: "신용카드", cost: 708144, paid: 488088, note: "숙박 리워드 사용 차감" },
-        { type: "사전 결제", item: "렌터카 4박 5일 (7~8인승 미니밴)", method: "신용카드", cost: 450000, paid: 450000, note: "NOC 안심보험 포함" },
+        { type: "사전 결제", item: "스즈키 렌터카 (7~8인승)", method: "신용카드", cost: 450000, paid: 450000, note: "예약번호: R0MQSUXK" },
         { type: "사전 결제", item: "해외 유심/eSIM (소프트뱅크)", method: "신용카드", cost: 11000, paid: 11000, note: "더모아 카드 결제" },
         { type: "현지 지출", item: "현지 주유비 및 고속도로 통행료(ETC)", method: "엔화 현금/카드", cost: 150000, paid: 150000, note: "비에이 왕복 및 공항 이동" },
         { type: "현지 지출", item: "가족 식비 및 디저트 (예산)", method: "엔화 현금/카드", cost: 800000, paid: 800000, note: "스시, 징기스칸, 카이센동 등" }
@@ -529,7 +522,6 @@
     let tripData = JSON.parse(localStorage.getItem('hokkaido_trip_data')) || DEFAULT_DATA;
     if (!tripData.budget) tripData.budget = DEFAULT_DATA.budget;
 
-    // 렌더링
     function renderApp() {
       document.getElementById('header-title').innerText = tripData.header.title;
       document.getElementById('header-subtitle').innerText = tripData.header.subtitle;
@@ -541,7 +533,6 @@
       const container = document.getElementById('tabContainers');
       container.innerHTML = '';
 
-      // Day 1 ~ Day 5 일정 렌더링
       tripData.days.forEach((day, dIdx) => {
         const dayDiv = document.createElement('div');
         dayDiv.className = `tab-content ${dIdx === 0 ? 'active' : ''}`;
@@ -588,7 +579,7 @@
         container.appendChild(dayDiv);
       });
 
-      // 숙소 & 렌터카 탭 (tab-5)
+      // 숙소 & 렌터카 (tab-5)
       const hotelDiv = document.createElement('div');
       hotelDiv.className = 'tab-content';
       hotelDiv.id = 'tab-5';
@@ -620,7 +611,7 @@
       hotelDiv.innerHTML = hotelHtml;
       container.appendChild(hotelDiv);
 
-      // 준비물 체크리스트 탭 (tab-6)
+      // 준비물 (tab-6)
       const checkDiv = document.createElement('div');
       checkDiv.className = 'tab-content';
       checkDiv.id = 'tab-6';
@@ -643,12 +634,11 @@
       checkDiv.innerHTML = checkHtml;
       container.appendChild(checkDiv);
 
-      // 💰 경비 관리 탭 (tab-7)
+      // 경비 관리 (tab-7)
       const budgetDiv = document.createElement('div');
       budgetDiv.className = 'tab-content';
       budgetDiv.id = 'tab-7';
 
-      // 경비 계산
       let totalCost = 0;
       let totalPaid = 0;
       tripData.budget.forEach(b => {
@@ -659,7 +649,6 @@
       let budgetHtml = `
         <div class="info-card">
           <h3>💰 홋카이도 여행 예산 및 지출 (관리자)</h3>
-          
           <div class="budget-summary-box">
             <div class="budget-card-mini">
               <span>총 소요 비용 (정가)</span>
@@ -670,7 +659,6 @@
               <strong style="color:var(--danger);">${totalPaid.toLocaleString()} 원</strong>
             </div>
           </div>
-
           <div class="table-container">
             <table class="budget-table">
               <thead>
@@ -705,8 +693,6 @@
               </tbody>
             </table>
           </div>
-
-          <!-- 새 지출 추가 입력 폼 -->
           <div class="budget-form">
             <h4>➕ 새 지출 항목 추가</h4>
             <div class="form-row">
@@ -737,13 +723,12 @@
       applyEditState();
     }
 
-    // 경비 탭 클릭 시 비밀번호 검증 (7149)
     function switchBudgetTab() {
       if (!isBudgetUnlocked) {
         const inputPwd = prompt("🔒 관리자 전용 비밀번호를 입력해 주세요 (4자리):");
         if (inputPwd === ADMIN_PASSWORD) {
           isBudgetUnlocked = true;
-          alert("비밀번호가 확인되었습니다. 경비 내역을 확인합니다.");
+          alert("비밀번호가 확인되었습니다.");
           switchTab(7);
         } else if (inputPwd !== null) {
           alert("비밀번호가 일치하지 않습니다.");
@@ -753,7 +738,6 @@
       }
     }
 
-    // 지출 항목 추가
     function addBudgetItem() {
       const type = document.getElementById('new-b-type').value;
       const item = document.getElementById('new-b-item').value.trim();
@@ -766,22 +750,13 @@
         return;
       }
 
-      tripData.budget.push({
-        type: type,
-        item: item,
-        method: method,
-        cost: paid,
-        paid: paid,
-        note: note
-      });
-
+      tripData.budget.push({ type, item, method, cost: paid, paid, note });
       localStorage.setItem('hokkaido_trip_data', JSON.stringify(tripData));
       renderApp();
       switchTab(7);
-      alert("새로운 지출 내역이 추가되었습니다.");
+      alert("지출 내역이 추가되었습니다.");
     }
 
-    // 지출 항목 삭제
     function deleteBudgetItem(idx) {
       if (confirm("해당 지출 내역을 삭제하시겠습니까?")) {
         tripData.budget.splice(idx, 1);
@@ -791,7 +766,6 @@
       }
     }
 
-    // 탭 전환
     function switchTab(index) {
       const tabs = document.querySelectorAll('.tab-btn');
       const contents = document.querySelectorAll('.tab-content');
@@ -800,10 +774,9 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // 일정 편집 모드 토글 (비밀번호: 7149)
     function toggleEditMode() {
       if (!isEditMode) {
-        const pwd = prompt("일정 편집 비밀번호를 입력해 주세요:");
+        const pwd = prompt("일정 편집 비밀번호를 입력해 주세요 (7149):");
         if (pwd === ADMIN_PASSWORD) {
           isEditMode = true;
           document.body.classList.add('edit-mode');
@@ -835,7 +808,6 @@
       });
     }
 
-    // 일정 변경 사항 일괄 저장
     function saveAllChanges() {
       tripData.header.title = document.getElementById('header-title').innerText.trim();
       tripData.header.subtitle = document.getElementById('header-subtitle').innerText.trim();
@@ -912,6 +884,15 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+      // 구버전 캐시 방지를 위해 강제 동기화 보정
+      const saved = localStorage.getItem('hokkaido_trip_data');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed.days && parsed.days[0].date !== "10/11 (일)") {
+          localStorage.removeItem('hokkaido_trip_data');
+          tripData = DEFAULT_DATA;
+        }
+      }
       renderApp();
     });
   </script>
