@@ -374,7 +374,7 @@
     let isEditMode = false;
     let isBudgetUnlocked = false;
 
-    // 10/11 ~ 10/15 확정 일정 데이터
+    // 10/11 ~ 10/15 확정 일정 데이터 (샤코탄 제외 반영)
     const DEFAULT_DATA = {
       header: {
         title: "❄️ 홋카이도 가족여행 4박 5일",
@@ -466,7 +466,7 @@
               category: "이동",
               badgeClass: "badge-rent",
               title: "부처의 언덕 ➔ 시코쓰호 이동",
-              desc: "국립공원 단풍 드라이브 코스",
+              desc: "국립공원 가을 단풍 드라이브 코스",
               query: "시코쓰호"
             },
             {
@@ -474,7 +474,7 @@
               category: "관광",
               badgeClass: "badge-food",
               title: "시코쓰호 산책 & 호숫가 점심 식사",
-              desc: "일본 최북단 부동호의 맑은 물과 가을 풍경 감상, 호숫가 식당가 점심 식사",
+              desc: "일본 최북단 부동호의 투명한 물과 가을 풍경 감상, 호숫가 식당가 점심",
               query: "시코쓰코 온천 상점가"
             },
             {
@@ -490,7 +490,7 @@
               category: "관광",
               badgeClass: "badge-tour",
               title: "노보리베츠 지옥계곡 (지고쿠다니) 탐방",
-              desc: "유황 연기가 솟아오르는 신비한 화산 지형 및 산책로 힐링 걷기",
+              desc: "유황 연기가 솟아오르는 화산 지형 및 데크 산책로 힐링 걷기",
               query: "노보리베츠 지옥계곡"
             },
             {
@@ -506,62 +506,62 @@
         {
           dayNum: 3,
           date: "10/13 (화)",
-          title: "조잔케이 호헤이쿄댐 단풍 & 샤코탄 해안 절경 & 오타루 운하",
+          title: "조잔케이 호헤이쿄댐 단풍 절경 & 오타루 운하 및 감성 산책",
           items: [
             {
-              time: "08:30 - 09:40",
+              time: "09:00 - 10:15",
               category: "이동",
               badgeClass: "badge-rent",
               title: "숙소 ➔ 조잔케이 호헤이쿄댐 이동",
-              desc: "삿포로 남서쪽 단풍 명소 계곡 드라이브",
+              desc: "삿포로 남서쪽 계곡 단풍 드라이브 (약 1시간 10분)",
               query: "호헤이쿄댐"
             },
             {
-              time: "09:40 - 11:00",
+              time: "10:15 - 12:00",
               category: "관광",
               badgeClass: "badge-tour",
               title: "조잔케이 호헤이쿄댐 (단풍 명소)",
-              desc: "전기버스 탑승 및 웅장한 댐과 단풍 파노라마 감상",
+              desc: "전기버스 탑승 및 웅장한 아치형 댐과 호수에 비친 가을 단풍 파노라마 감상",
               query: "호헤이쿄댐"
             },
             {
-              time: "11:00 - 13:00",
+              time: "12:00 - 13:15",
               category: "이동",
               badgeClass: "badge-rent",
-              title: "호헤이쿄댐 ➔ 샤코탄 반도 이동 및 점심 식사",
-              desc: "해안 드라이브 / 샤코탄 명물 우니동(성게알 덮밥) 또는 해산물 식사",
-              query: "샤코탄 카무이미사키"
-            },
-            {
-              time: "13:00 - 14:30",
-              category: "관광",
-              badgeClass: "badge-tour",
-              title: "샤코탄 카무이미사키 (샤코탄 블루 바다)",
-              desc: "능선 산책로를 걸으며 홋카이도 유일의 해중공원 에메랄드빛 바다 절경 감상",
-              query: "카무이미사키"
-            },
-            {
-              time: "14:30 - 16:00",
-              category: "이동",
-              badgeClass: "badge-rent",
-              title: "샤코탄 ➔ 오타루 이동",
-              desc: "해안 국도 드라이브 (약 1시간 15분)",
+              title: "호헤이쿄댐 ➔ 오타루 이동",
+              desc: "아사리가와 온천길 경유 국도 드라이브 (약 1시간 15분)",
               query: "오타루 운하"
             },
             {
-              time: "16:00 - 18:30",
+              time: "13:15 - 14:45",
+              category: "식사",
+              badgeClass: "badge-food",
+              title: "오타루 스시거리 점심 식사",
+              desc: "오타루 명물 신선한 정통 스시 또는 카이센동 만찬 (마사즈시, 우오마사 등)",
+              query: "오타루 스시거리"
+            },
+            {
+              time: "14:45 - 17:15",
               category: "관광",
               badgeClass: "badge-tour",
-              title: "오타루 운하 & 오르골당 & 사카이마치 거리",
-              desc: "운하 산책 및 르타오 디저트, 오르골당 기념품 쇼핑 및 감성 야경",
+              title: "오타루 오르골당 & 사카이마치 거리 산책",
+              desc: "증기시계 관람, 르타오 본점 디저트 시식 및 기타이치 유리 공방 쇼핑",
               query: "오타루 오르골당"
+            },
+            {
+              time: "17:15 - 18:30",
+              category: "관광",
+              badgeClass: "badge-tour",
+              title: "오타루 운하 일몰 및 가스등 야경 감상",
+              desc: "벽돌 창고군을 배경으로 로맨틱한 오타루 운하 산책 및 가족 기념사진 촬영",
+              query: "오타루 운하"
             },
             {
               time: "18:30 - 20:30",
               category: "식사",
               badgeClass: "badge-food",
               title: "오타루 저녁 식사 후 삿포로 숙소 복귀",
-              desc: "오타루 스시거리 식사 후 삿포로 숙소로 복귀 (약 45분)",
+              desc: "오타루 나루토 본점(영계구이) 또는 라멘 식사 후 삿포로 숙소로 복귀 (약 45분)",
               query: "란도르 호텔 삿포로 헤리티지"
             }
           ]
@@ -707,7 +707,7 @@
         { type: "사전 결제", item: "란도르 호텔 삿포로 헤리티지 (4박)", method: "신용카드", cost: 708144, paid: 488088, note: "숙박 리워드 사용 차감" },
         { type: "사전 결제", item: "스즈키 렌터카 (7~8인승 미니밴)", method: "신용카드", cost: 450000, paid: 450000, note: "예약번호: R0MQSUXK" },
         { type: "사전 결제", item: "해외 유심/eSIM (소프트뱅크)", method: "신용카드", cost: 11000, paid: 11000, note: "더모아 카드 결제" },
-        { type: "현지 지출", item: "현지 주유비 및 고속도로 통행료(ETC)", method: "엔화 현금/카드", cost: 150000, paid: 150000, note: "노보리베츠/샤코탄/오타루 주행" },
+        { type: "현지 지출", item: "현지 주유비 및 고속도로 통행료(ETC)", method: "엔화 현금/카드", cost: 150000, paid: 150000, note: "노보리베츠/오타루 주행" },
         { type: "현지 지출", item: "가족 식비 및 로피아 마트 장보기 (예산)", method: "엔화 현금/카드", cost: 800000, paid: 800000, note: "키타노구루메테이, 오타루 스시 등" }
       ]
     };
@@ -1078,11 +1078,12 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      // 신규 일정(호텔: 란도르) 변경 감지 시 브라우저 캐시를 자동으로 새 데이터로 갱신
+      // 샤코탄 제외 신규 버전 동기화 처리
       const saved = localStorage.getItem('hokkaido_trip_data');
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (!parsed.header || parsed.header.hotel !== "란도르 호텔 삿포로 헤리티지") {
+        const day3Title = parsed.days && parsed.days[2] ? parsed.days[2].title : '';
+        if (day3Title.includes('샤코탄') || !parsed.header || parsed.header.hotel !== "란도르 호텔 삿포로 헤리티지") {
           localStorage.removeItem('hokkaido_trip_data');
           tripData = DEFAULT_DATA;
         }
